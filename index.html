@@ -61,14 +61,17 @@
             <section class="catalog-panel" aria-label="Productos disponibles">
                 <product-list></product-list>
             </section>
-            <aside class="cart-sidebar" aria-label="Carrito y resumen del pedido">
+            <aside class="cart-sidebar" id="cart-sidebar" aria-label="Carrito y resumen del pedido">
                 <section class="cart-panel">
                     <div class="section-heading cart-heading">
                         <div>
                             <p class="eyebrow">TU SELECCIÓN</p>
                             <h2>Carrito</h2>
                         </div>
-                        <span class="cart-badge" aria-hidden="true">◆</span>
+                        <div class="cart-heading-actions">
+                            <span class="cart-badge" aria-hidden="true">◆</span>
+                            <button class="cart-close" type="button" id="close-cart" aria-label="Cerrar carrito">×</button>
+                        </div>
                     </div>
                     <shopping-cart></shopping-cart>
                     <p id="cart-message" role="status" aria-live="polite"></p>
@@ -90,5 +93,12 @@
             </aside>
         </div>
     </main>
+    <button class="mobile-cart-toggle" type="button" id="mobile-cart-toggle"
+        aria-controls="cart-sidebar" aria-expanded="false">
+        <span aria-hidden="true">◆</span> Ver carrito
+        <span class="mobile-cart-count" id="mobile-cart-count">0</span>
+    </button>
+    <button class="cart-backdrop" type="button" id="cart-backdrop"
+        aria-label="Cerrar carrito" tabindex="-1"></button>
 </body>
 </html>

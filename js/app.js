@@ -18,6 +18,11 @@ const mensajePedido = document.querySelector("#order-message");
 const botonVaciar = document.querySelector("#clear-cart");
 const botonConfirmar = document.querySelector("#confirm-order");
 const contadorCarrito = document.querySelector("#cart-count");
+const contadorCarritoMovil = document.querySelector("#mobile-cart-count");
+const botonAbrirCarrito = document.querySelector("#mobile-cart-toggle");
+const botonCerrarCarrito = document.querySelector("#close-cart");
+const fondoCarrito = document.querySelector("#cart-backdrop");
+const panelCarrito = document.querySelector("#cart-sidebar");
 const subtotalPedido = document.querySelector("#subtotal");
 const descuentoPedido = document.querySelector("#discount");
 const totalPedido = document.querySelector("#total");
@@ -70,12 +75,37 @@ function actualizarVistaCarrito() {
     const lineas = carrito.obtenerLineas();
     listaCarrito.items = lineas;
     contadorCarrito.textContent = String(carrito.totalUnidades);
+    contadorCarritoMovil.textContent = String(carrito.totalUnidades);
     subtotalPedido.textContent = formatoPrecio.format(carrito.calcularSubtotal());
     descuentoPedido.textContent = formatoPrecio.format(carrito.calcularDescuento());
     totalPedido.textContent = formatoPrecio.format(carrito.calcularTotal());
     botonVaciar.disabled = lineas.length === 0;
     botonConfirmar.disabled = lineas.length === 0;
 }
+
+function cerrarCarritoMovil() {
+    panelCarrito.classList.remove("is-open");
+    document.body.classList.remove("cart-open");
+    botonAbrirCarrito.setAttribute("aria-expanded", "false");
+}
+
+botonAbrirCarrito.addEventListener("click", () => {
+    panelCarrito.classList.add("is-open");
+    document.body.classList.add("cart-open");
+    botonAbrirCarrito.setAttribute("aria-expanded", "true");
+    botonCerrarCarrito.focus();
+});
+botonCerrarCarrito.addEventListener("click", () => {
+    cerrarCarritoMovil();
+    botonAbrirCarrito.focus();
+});
+fondoCarrito.addEventListener("click", cerrarCarritoMovil);
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && panelCarrito.classList.contains("is-open")) {
+        cerrarCarritoMovil();
+        botonAbrirCarrito.focus();
+    }
+});
 
 function guardarYActualizarCarrito() {
     actualizarVistaCarrito();
