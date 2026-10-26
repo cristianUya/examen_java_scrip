@@ -9,43 +9,86 @@
 </head>
 <body>
     <header>
-        <h1>TecnoStock</h1>
-        <p>Tu tienda de tecnología</p>
-        <p>Unidades en el carrito: <span id="cart-count"></span></p>
+        <div class="header-content">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">T</span>
+                <div>
+                    <h1>TecnoStock</h1>
+                    <p>Tecnología con estilo</p>
+                </div>
+            </div>
+            <p class="header-cart">Tu carrito <span id="cart-count">0</span></p>
+        </div>
     </header>
     <main>
-        <section>
-            <h2>Catálogo de productos</h2>
-            <label for="search">Buscar productos:</label>
-            <input type="search" id="search" placeholder="Nombre o descripción" disabled>
-            <label for="category">Categoría:</label>
-            <select id="category" disabled><option value="">Todas las categorías</option></select>
-            <label for="availability">Mostrar solo productos disponibles:</label>
-            <input type="checkbox" id="availability" disabled>
-            <label for="sort">Ordenar por precio:</label>
-            <select id="sort" disabled>
-                <option value="">Sin ordenar</option>
-                <option value="asc">Menor a mayor</option>
-                <option value="desc">Mayor a menor</option>
-            </select>
-            <button type="button" id="clear-filters" disabled>Limpiar filtros</button>
+        <section class="filter-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ENCUENTRA LO QUE BUSCAS</p>
+                    <h2>Catálogo de productos</h2>
+                </div>
+                <button class="button button-secondary" type="button" id="clear-filters" disabled>
+                    Limpiar filtros
+                </button>
+            </div>
+            <div class="filters">
+                <div class="filter-field search-field">
+                    <label for="search">Buscar productos</label>
+                    <input type="search" id="search" placeholder="Nombre o descripción" disabled>
+                </div>
+                <div class="filter-field">
+                    <label for="category">Categoría</label>
+                    <select id="category" disabled>
+                        <option value="">Todas las categorías</option>
+                    </select>
+                </div>
+                <div class="filter-field">
+                    <label for="sort">Ordenar por precio</label>
+                    <select id="sort" disabled>
+                        <option value="">Sin ordenar</option>
+                        <option value="asc">Menor a mayor</option>
+                        <option value="desc">Mayor a menor</option>
+                    </select>
+                </div>
+                <label class="availability" for="availability">
+                    <input type="checkbox" id="availability" disabled>
+                    <span>Solo disponibles</span>
+                </label>
+            </div>
         </section>
         <p id="catalog-status" role="status" aria-live="polite">Cargando catálogo...</p>
-        <product-list></product-list>
-        <section>
-            <h2>Carrito de compras</h2>
-            <shopping-cart></shopping-cart>
-            <p id="cart-message" role="status" aria-live="polite"></p>
-            <button type="button" id="clear-cart" disabled>Vaciar carrito</button>
-        </section>
-        <section>
-            <h2>Resumen del pedido</h2>
-            <p>Subtotal: <span id="subtotal">$0</span></p>
-            <p>Descuento: <span id="discount">$0</span></p>
-            <p>Total: <span id="total">$0</span></p>
-            <button type="button" id="confirm-order" disabled>Confirmar pedido</button>
-            <div id="order-message" role="status" aria-live="polite"></div>
-        </section>
+        <div class="store-layout">
+            <section class="catalog-panel" aria-label="Productos disponibles">
+                <product-list></product-list>
+            </section>
+            <aside class="cart-sidebar" aria-label="Carrito y resumen del pedido">
+                <section class="cart-panel">
+                    <div class="section-heading cart-heading">
+                        <div>
+                            <p class="eyebrow">TU SELECCIÓN</p>
+                            <h2>Carrito</h2>
+                        </div>
+                        <span class="cart-badge" aria-hidden="true">◆</span>
+                    </div>
+                    <shopping-cart></shopping-cart>
+                    <p id="cart-message" role="status" aria-live="polite"></p>
+                    <button class="button button-secondary clear-cart" type="button" id="clear-cart" disabled>
+                        Vaciar carrito
+                    </button>
+                </section>
+                <section class="order-panel">
+                    <p class="eyebrow">TOTAL DE TU PEDIDO</p>
+                    <h2>Resumen</h2>
+                    <div class="price-row"><span>Subtotal</span><span id="subtotal">$0</span></div>
+                    <div class="price-row"><span>Descuento</span><span id="discount">$0</span></div>
+                    <div class="price-row total-row"><span>Total</span><strong id="total">$0</strong></div>
+                    <button class="button button-primary confirm-button" type="button" id="confirm-order" disabled>
+                        Confirmar pedido
+                    </button>
+                    <div id="order-message" role="status" aria-live="polite"></div>
+                </section>
+            </aside>
+        </div>
     </main>
 </body>
 </html>
