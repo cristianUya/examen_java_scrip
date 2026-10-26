@@ -92,7 +92,31 @@ function cerrarCarritoMovil(devolverFoco = false) {
     if (devolverFoco) botonAbrirCarrito.focus();
 }
 
+const vistaMovil = window.matchMedia("(max-width: 760px)");
+function actualizarModoCarrito({ matches: esMovil }) {
+    if (esMovil) {
+        panelCarrito.setAttribute("role", "dialog");
+        panelCarrito.setAttribute("aria-modal", "true");
+        panelCarrito.setAttribute("aria-labelledby", "cart-title");
+        cerrarCarritoMovil();
+        return;
+    }
+
+    panelCarrito.classList.remove("is-open");
+    document.body.classList.remove("cart-open");
+    panelCarrito.removeAttribute("role");
+    panelCarrito.removeAttribute("aria-modal");
+    panelCarrito.removeAttribute("aria-labelledby");
+    panelCarrito.removeAttribute("aria-hidden");
+    panelCarrito.inert = false;
+    botonAbrirCarrito.setAttribute("aria-expanded", "false");
+}
+
+vistaMovil.addEventListener("change", actualizarModoCarrito);
+actualizarModoCarrito(vistaMovil);
+
 botonAbrirCarrito.addEventListener("click", () => {
+    if (!vistaMovil.matches) return;
     panelCarrito.classList.add("is-open");
     document.body.classList.add("cart-open");
     botonAbrirCarrito.setAttribute("aria-expanded", "true");
