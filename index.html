@@ -61,12 +61,13 @@
             <section class="catalog-panel" aria-label="Productos disponibles">
                 <product-list></product-list>
             </section>
-            <aside class="cart-sidebar" id="cart-sidebar" aria-label="Carrito y resumen del pedido">
+            <aside class="cart-sidebar" id="cart-sidebar" role="dialog" aria-modal="true"
+                aria-labelledby="cart-title" aria-hidden="true" inert>
                 <section class="cart-panel">
                     <div class="section-heading cart-heading">
                         <div>
                             <p class="eyebrow">TU SELECCIÓN</p>
-                            <h2>Carrito</h2>
+                            <h2 id="cart-title">Carrito</h2>
                         </div>
                         <div class="cart-heading-actions">
                             <span class="cart-badge" aria-hidden="true">◆</span>

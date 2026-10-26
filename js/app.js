@@ -83,27 +83,28 @@ function actualizarVistaCarrito() {
     botonConfirmar.disabled = lineas.length === 0;
 }
 
-function cerrarCarritoMovil() {
+function cerrarCarritoMovil(devolverFoco = false) {
     panelCarrito.classList.remove("is-open");
     document.body.classList.remove("cart-open");
     botonAbrirCarrito.setAttribute("aria-expanded", "false");
+    panelCarrito.setAttribute("aria-hidden", "true");
+    panelCarrito.inert = true;
+    if (devolverFoco) botonAbrirCarrito.focus();
 }
 
 botonAbrirCarrito.addEventListener("click", () => {
     panelCarrito.classList.add("is-open");
     document.body.classList.add("cart-open");
     botonAbrirCarrito.setAttribute("aria-expanded", "true");
+    panelCarrito.removeAttribute("aria-hidden");
+    panelCarrito.inert = false;
     botonCerrarCarrito.focus();
 });
-botonCerrarCarrito.addEventListener("click", () => {
-    cerrarCarritoMovil();
-    botonAbrirCarrito.focus();
-});
-fondoCarrito.addEventListener("click", cerrarCarritoMovil);
+botonCerrarCarrito.addEventListener("click", () => cerrarCarritoMovil(true));
+fondoCarrito.addEventListener("click", () => cerrarCarritoMovil(true));
 document.addEventListener("keydown", event => {
     if (event.key === "Escape" && panelCarrito.classList.contains("is-open")) {
-        cerrarCarritoMovil();
-        botonAbrirCarrito.focus();
+        cerrarCarritoMovil(true);
     }
 });
 
