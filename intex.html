@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoStock</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>TecnoStock</h1>
+        <p>Tu tienda de tecnología</p>
+        <p>Unidades en el carrito: <span id="cart-count">0</span></p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Catálogo de productos</h2>
+
+            <label for="search">Buscar productos:</label>
+            <input
+                type="search"
+                id="search"
+                placeholder="Nombre o descripción"
+            >
+
+            <label for="category">Categoría:</label>
+            <select id="category">
+                <option value="">Todas las categorías</option>
+            </select>
+
+            <label for="availability">Disponibilidad:</label>
+            <input type="checkbox" id="availability">
+            <span>Mostrar solo disponibles</span>
+
+            <label for="sort">Ordenar por precio:</label>
+            <select id="sort">
+                <option value="">Sin ordenar</option>
+                <option value="asc">Menor a mayor</option>
+                <option value="desc">Mayor a menor</option>
+            </select>
+
+            <button type="button" id="clear-filters">
+                Limpiar filtros
+            </button>
+        </section>
+
+        <p id="catalog-status" role="status">
+            Cargando catálogo...
+        </p>
+
+        <product-list></product-list>
+
+        <section>
+            <h2>Carrito de compras</h2>
+            <shopping-cart></shopping-cart>
+
+            <button type="button" id="clear-cart">
+                Vaciar carrito
+            </button>
+        </section>
+
+        <section>
+            <h2>Resumen del pedido</h2>
+
+            <p>Subtotal: <span id="subtotal">$0</span></p>
+            <p>Descuento: <span id="discount">$0</span></p>
+            <p>Total: <span id="total">$0</span></p>
+
+            <button type="button" id="confirm-order">
+                Confirmar pedido
+            </button>
+
+            <div id="order-message" role="status" aria-live="polite"></div>
+        </section>
+    </main>
+
+</body>
+</html>
