@@ -8,75 +8,44 @@
     <script type="module" src="js/app.js"></script>
 </head>
 <body>
-
     <header>
         <h1>TecnoStock</h1>
         <p>Tu tienda de tecnología</p>
         <p>Unidades en el carrito: <span id="cart-count"></span></p>
     </header>
-
     <main>
         <section>
             <h2>Catálogo de productos</h2>
-
             <label for="search">Buscar productos:</label>
-            <input
-                type="search"
-                id="search"
-                placeholder="Nombre o descripción"
-                disabled
-            >
-
+            <input type="search" id="search" placeholder="Nombre o descripción" disabled>
             <label for="category">Categoría:</label>
-            <select id="category" disabled>
-                <option value="">Todas las categorías</option>
-            </select>
-
+            <select id="category" disabled><option value="">Todas las categorías</option></select>
             <label for="availability">Mostrar solo productos disponibles:</label>
             <input type="checkbox" id="availability" disabled>
-
             <label for="sort">Ordenar por precio:</label>
             <select id="sort" disabled>
                 <option value="">Sin ordenar</option>
                 <option value="asc">Menor a mayor</option>
                 <option value="desc">Mayor a menor</option>
             </select>
-
-            <button type="button" id="clear-filters" disabled>
-                Limpiar filtros
-            </button>
+            <button type="button" id="clear-filters" disabled>Limpiar filtros</button>
         </section>
-
-        <p id="catalog-status" role="status" aria-live="polite">
-            Cargando catálogo...
-        </p>
-
+        <p id="catalog-status" role="status" aria-live="polite">Cargando catálogo...</p>
         <product-list></product-list>
-
         <section>
             <h2>Carrito de compras</h2>
             <shopping-cart></shopping-cart>
             <p id="cart-message" role="status" aria-live="polite"></p>
-
-            <button type="button" id="clear-cart" disabled>
-                Vaciar carrito
-            </button>
+            <button type="button" id="clear-cart" disabled>Vaciar carrito</button>
         </section>
-
         <section>
             <h2>Resumen del pedido</h2>
-
             <p>Subtotal: <span id="subtotal">$0</span></p>
             <p>Descuento: <span id="discount">$0</span></p>
             <p>Total: <span id="total">$0</span></p>
-
-            <button type="button" id="confirm-order" disabled>
-                Confirmar pedido
-            </button>
-
+            <button type="button" id="confirm-order" disabled>Confirmar pedido</button>
             <div id="order-message" role="status" aria-live="polite"></div>
         </section>
     </main>
-
 </body>
 </html>

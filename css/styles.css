@@ -1,104 +1,54 @@
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
+    background: #f4f6f9;
     color: #222;
 }
 
 header {
-    background-color: #172554;
-    color: white;
     padding: 24px;
+    background: #172554;
+    color: white;
     text-align: center;
 }
 
-main {
-    width: min(1100px, 94%);
-    margin: 24px auto;
-}
+main { width: min(1100px, 94%); margin: 24px auto; }
 
 section {
-    background-color: white;
-    padding: 20px;
     margin-bottom: 20px;
-    border-radius: 10px;
+    padding: 20px;
     border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
 }
 
-label {
-    display: inline-block;
-    margin: 8px 4px;
-    font-weight: 600;
-}
-
-input,
-select,
-button {
-    font: inherit;
-    padding: 10px;
-    margin: 5px;
-}
-
-input,
-select {
-    max-width: 100%;
-}
+label { display: inline-block; margin: 8px 4px; font-weight: 600; }
+input, select, button { margin: 5px; padding: 10px; font: inherit; }
+input, select { max-width: 100%; }
 
 button {
-    cursor: pointer;
-    border: none;
+    border: 0;
     border-radius: 6px;
-    background-color: #1d4ed8;
+    background: #1d4ed8;
     color: white;
+    cursor: pointer;
 }
 
-button:disabled {
-    background-color: #666;
-    cursor: not-allowed;
-}
-
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
+button:disabled { background: #666; cursor: not-allowed; }
+button:hover:not(:disabled) { background: #1e40af; }
+button:focus-visible, input:focus-visible, select:focus-visible {
     outline: 3px solid #f59e0b;
     outline-offset: 2px;
 }
 
-button:hover {
-    background-color: #1e40af;
-}
-
-#catalog-status,
-#cart-message,
-#order-message {
-    white-space: pre-line;
-    line-height: 1.5;
-}
-
-#order-message {
-    overflow-wrap: anywhere;
-}
+#catalog-status, #cart-message, #order-message { white-space: pre-line; line-height: 1.5; }
+#order-message { overflow-wrap: anywhere; }
 
 @media (max-width: 600px) {
-    main {
-        width: 96%;
-    }
-
-    section {
-        padding: 12px;
-    }
-
-    input:not([type="checkbox"]),
-    select {
-        width: 100%;
-        margin: 6px 0;
-    }
-
-    button {
-        min-height: 44px;
-    }
+    main { width: 96%; }
+    section { padding: 12px; }
+    input:not([type="checkbox"]), select { width: 100%; margin: 6px 0; }
+    button { min-height: 44px; }
 }

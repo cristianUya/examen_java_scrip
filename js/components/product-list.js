@@ -13,22 +13,15 @@ class ProductList extends HTMLElement {
 
     render() {
         const estilos = document.createElement("style");
-        estilos.textContent = `
-            .catalogo {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                gap: 20px;
-            }
-        `;
-
+        estilos.textContent = ".catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }";
         const lista = document.createElement("div");
         lista.className = "catalogo";
 
-        this._productos.forEach(producto => {
+        for (const producto of this._productos) {
             const tarjeta = document.createElement("product-card");
             tarjeta.producto = producto;
-            lista.appendChild(tarjeta);
-        });
+            lista.append(tarjeta);
+        }
 
         this.shadowRoot.replaceChildren(estilos, lista);
     }
