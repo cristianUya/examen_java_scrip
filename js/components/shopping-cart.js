@@ -13,14 +13,24 @@ class ShoppingCart extends HTMLElement {
     render() {
         const styles = document.createElement("style");
         styles.textContent = `
-            .item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; align-items: center; padding: 12px 0; border-bottom: 1px solid #ddd; }
+            .empty { padding: 18px 10px; border: 1px dashed #d8d5ce; border-radius: 10px; color: #777b7e; text-align: center; font-size: 13px; }
+            .item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 13px 0; border-bottom: 1px solid #eeece7; }
             .item p { margin: 4px 0; }
-            .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
-            button { min-width: 38px; padding: 8px 10px; border: 0; border-radius: 5px; background: #1d4ed8; color: white; cursor: pointer; }
-            button:disabled { background: #666; cursor: not-allowed; }
+            .item p:first-child { color: #303234; font-size: 13px; font-weight: 700; }
+            .item p:not(:first-child) { color: #777b7e; font-size: 11px; }
+            .item p:last-child { color: #987440; font-weight: 700; }
+            .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 4px; }
+            .quantity { min-width: 20px; color: #353739; text-align: center; font-size: 12px; font-weight: 700; }
+            button { min-width: 30px; min-height: 30px; padding: 5px 8px; border: 1px solid #dedbd4; border-radius: 7px; background: #f4f3f0; color: #54575a; font: inherit; font-size: 12px; cursor: pointer; }
+            button:hover:not(:disabled) { border-color: #c3a36a; background: #f0e5d0; color: #604d2d; }
+            button:disabled { opacity: .45; cursor: not-allowed; }
+            button:focus-visible { outline: 3px solid #d7b978; outline-offset: 2px; }
+            button.remove { padding: 6px 8px; border-color: transparent; background: transparent; color: #777; font-size: 11px; }
+            button.remove:hover:not(:disabled) { background: #f3ece8; color: #8b5140; }
         `;
         const lista = document.createElement("div");
         if (!this._items.length) {
+            lista.className = "empty";
             lista.textContent = "El carrito está vacío.";
             this.shadowRoot.replaceChildren(styles, lista);
             return;
@@ -43,12 +53,13 @@ class ShoppingCart extends HTMLElement {
 
             const acciones = document.createElement("div");
             acciones.className = "actions";
+            const cantidad = document.createElement("span");
+            cantidad.className = "quantity";
+            cantidad.textContent = String(item.quantity);
+            cantidad.setAttribute("aria-label", "Cantidad");
             const disminuir = this.crearBoton("−", `Disminuir ${item.name}`,
                 () => this.solicitarCambioCantidad(item, item.quantity - 1));
             disminuir.disabled = item.quantity <= 1;
-            const cantidad = document.createElement("span");
-            cantidad.textContent = String(item.quantity);
-            cantidad.setAttribute("aria-label", "Cantidad");
             const aumentar = this.crearBoton("+", `Aumentar ${item.name}`,
                 () => this.solicitarCambioCantidad(item, item.quantity + 1));
             aumentar.disabled = item.quantity >= item.stock;
@@ -56,6 +67,7 @@ class ShoppingCart extends HTMLElement {
                 this.dispatchEvent(new CustomEvent("remove-from-cart", {
                     detail: { productId: item.id }, bubbles: true, composed: true
                 })));
+            eliminar.className = "remove";
 
             acciones.append(disminuir, cantidad, aumentar, eliminar);
             fila.append(informacion, acciones);

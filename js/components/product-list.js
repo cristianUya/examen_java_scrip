@@ -13,7 +13,10 @@ class ProductList extends HTMLElement {
 
     render() {
         const estilos = document.createElement("style");
-        estilos.textContent = ".catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }";
+        estilos.textContent = `
+            .catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+            @media (max-width: 480px) { .catalogo { grid-template-columns: 1fr; } }
+        `;
         const lista = document.createElement("div");
         lista.className = "catalogo";
 
