@@ -78,7 +78,7 @@
         "price": 210000,
         "stock": 6,
         "description": "Micrófono para videollamadas y grabaciones",
-        "active": true
+        "active": false
     },
     {
         "id": 10,
@@ -103,7 +103,7 @@
         "name": "Disco duro externo de 2 TB",
         "category": "Almacenamiento",
         "price": 290000,
-        "stock": 11,
+        "stock": 0,
         "description": "Almacenamiento externo para copias de seguridad",
         "active": true
     },

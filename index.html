@@ -12,7 +12,7 @@
     <header>
         <h1>TecnoStock</h1>
         <p>Tu tienda de tecnología</p>
-        <p>Unidades en el carrito: <span id="cart-count">0</span></p>
+        <p>Unidades en el carrito: <span id="cart-count"></span></p>
     </header>
 
     <main>
@@ -24,30 +24,30 @@
                 type="search"
                 id="search"
                 placeholder="Nombre o descripción"
+                disabled
             >
 
             <label for="category">Categoría:</label>
-            <select id="category">
+            <select id="category" disabled>
                 <option value="">Todas las categorías</option>
             </select>
 
-            <label for="availability">Disponibilidad:</label>
-            <input type="checkbox" id="availability">
-            <span>Mostrar solo disponibles</span>
+            <label for="availability">Mostrar solo productos disponibles:</label>
+            <input type="checkbox" id="availability" disabled>
 
             <label for="sort">Ordenar por precio:</label>
-            <select id="sort">
+            <select id="sort" disabled>
                 <option value="">Sin ordenar</option>
                 <option value="asc">Menor a mayor</option>
                 <option value="desc">Mayor a menor</option>
             </select>
 
-            <button type="button" id="clear-filters">
+            <button type="button" id="clear-filters" disabled>
                 Limpiar filtros
             </button>
         </section>
 
-        <p id="catalog-status" role="status">
+        <p id="catalog-status" role="status" aria-live="polite">
             Cargando catálogo...
         </p>
 
@@ -56,8 +56,9 @@
         <section>
             <h2>Carrito de compras</h2>
             <shopping-cart></shopping-cart>
+            <p id="cart-message" role="status" aria-live="polite"></p>
 
-            <button type="button" id="clear-cart">
+            <button type="button" id="clear-cart" disabled>
                 Vaciar carrito
             </button>
         </section>
@@ -69,7 +70,7 @@
             <p>Descuento: <span id="discount">$0</span></p>
             <p>Total: <span id="total">$0</span></p>
 
-            <button type="button" id="confirm-order">
+            <button type="button" id="confirm-order" disabled>
                 Confirmar pedido
             </button>
 
