@@ -1,0 +1,119 @@
+[
+    {
+        "id": 1,
+        "name": "Portátil Lenovo IdeaPad",
+        "category": "Computadores",
+        "price": 2500000,
+        "stock": 10,
+        "description": "Portátil para estudiar y trabajar",
+        "active": true
+    },
+    {
+        "id": 2,
+        "name": "Portátil HP Pavilion",
+        "category": "Computadores",
+        "price": 2800000,
+        "stock": 8,
+        "description": "Portátil para tareas y entretenimiento",
+        "active": true
+    },
+    {
+        "id": 3,
+        "name": "Computador de escritorio",
+        "category": "Computadores",
+        "price": 3200000,
+        "stock": 5,
+        "description": "Equipo de escritorio para el hogar y la oficina",
+        "active": true
+    },
+    {
+        "id": 4,
+        "name": "Mouse inalámbrico Logitech",
+        "category": "Accesorios",
+        "price": 45000,
+        "stock": 20,
+        "description": "Mouse óptico inalámbrico para computador",
+        "active": true
+    },
+    {
+        "id": 5,
+        "name": "Teclado mecánico RGB",
+        "category": "Accesorios",
+        "price": 180000,
+        "stock": 12,
+        "description": "Teclado con iluminación para escribir y jugar",
+        "active": true
+    },
+    {
+        "id": 6,
+        "name": "Monitor Samsung de 24 pulgadas",
+        "category": "Accesorios",
+        "price": 650000,
+        "stock": 7,
+        "description": "Monitor Full HD para trabajo y entretenimiento",
+        "active": true
+    },
+    {
+        "id": 7,
+        "name": "Audífonos Bluetooth",
+        "category": "Audio",
+        "price": 120000,
+        "stock": 15,
+        "description": "Audífonos inalámbricos con sonido estéreo",
+        "active": true
+    },
+    {
+        "id": 8,
+        "name": "Parlante portátil",
+        "category": "Audio",
+        "price": 95000,
+        "stock": 18,
+        "description": "Parlante compacto para escuchar música",
+        "active": true
+    },
+    {
+        "id": 9,
+        "name": "Micrófono USB",
+        "category": "Audio",
+        "price": 210000,
+        "stock": 6,
+        "description": "Micrófono para videollamadas y grabaciones",
+        "active": true
+    },
+    {
+        "id": 10,
+        "name": "Disco SSD de 1 TB",
+        "category": "Almacenamiento",
+        "price": 350000,
+        "stock": 9,
+        "description": "Unidad de almacenamiento de estado sólido",
+        "active": true
+    },
+    {
+        "id": 11,
+        "name": "Memoria USB de 128 GB",
+        "category": "Almacenamiento",
+        "price": 55000,
+        "stock": 25,
+        "description": "Memoria portátil para guardar documentos",
+        "active": true
+    },
+    {
+        "id": 12,
+        "name": "Disco duro externo de 2 TB",
+        "category": "Almacenamiento",
+        "price": 290000,
+        "stock": 11,
+        "description": "Almacenamiento externo para copias de seguridad",
+        "active": true
+    },
+    {
+        "id": 101,
+        "name": "Teclado mecánico",
+        "category": "Perifericos",
+        "price": 189900,
+        "stock": 8,
+        "description": "Teclado USB para uso diario",
+        "active": true
+    }
+]
