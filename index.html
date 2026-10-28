@@ -86,7 +86,7 @@
                     <div class="price-row"><span>Descuento</span><span id="discount">$0</span></div>
                     <div class="price-row total-row"><span>Total</span><strong id="total">$0</strong></div>
                     <button class="button button-primary confirm-button" type="button" id="confirm-order" disabled>
-                        Confirmar pedido
+                        Continuar al checkout
                     </button>
                     <div id="order-message" role="status" aria-live="polite"></div>
                 </section>
@@ -100,5 +100,52 @@
     </button>
     <button class="cart-backdrop" type="button" id="cart-backdrop"
         aria-label="Cerrar carrito" tabindex="-1"></button>
+    <dialog class="checkout-dialog" id="checkout-dialog" aria-labelledby="checkout-title">
+        <form id="checkout-form">
+            <div class="checkout-heading">
+                <div>
+                    <p class="eyebrow">ÚLTIMO PASO</p>
+                    <h2 id="checkout-title">Finalizar pedido</h2>
+                </div>
+                <button class="checkout-close" type="button" id="close-checkout"
+                    aria-label="Cerrar checkout">×</button>
+            </div>
+            <p class="checkout-note">Completa tus datos de contacto y entrega. Esta compra es una simulación local; no se realizará ningún pago.</p>
+            <div class="checkout-fields">
+                <div class="checkout-field">
+                    <label for="customer-name">Nombre completo</label>
+                    <input id="customer-name" name="name" autocomplete="name" required maxlength="100">
+                </div>
+                <div class="checkout-field">
+                    <label for="customer-email">Correo electrónico</label>
+                    <input id="customer-email" name="email" type="email" autocomplete="email" required maxlength="150">
+                </div>
+                <div class="checkout-field">
+                    <label for="customer-phone">Teléfono</label>
+                    <input id="customer-phone" name="phone" type="tel" autocomplete="tel" required maxlength="30">
+                </div>
+                <div class="checkout-field">
+                    <label for="customer-city">Ciudad</label>
+                    <input id="customer-city" name="city" autocomplete="address-level2" required maxlength="80">
+                </div>
+                <div class="checkout-field checkout-address">
+                    <label for="customer-address">Dirección de entrega</label>
+                    <input id="customer-address" name="address" autocomplete="street-address" required maxlength="180">
+                </div>
+            </div>
+            <div class="checkout-summary">
+                <h3>Tu pedido</h3>
+                <ul id="checkout-items"></ul>
+                <div class="price-row"><span>Subtotal</span><span id="checkout-subtotal"></span></div>
+                <div class="price-row"><span>Descuento</span><span id="checkout-discount"></span></div>
+                <div class="price-row total-row"><span>Total</span><strong id="checkout-total"></strong></div>
+            </div>
+            <p id="checkout-message" role="alert" aria-live="assertive"></p>
+            <div class="checkout-actions">
+                <button class="button button-secondary" type="button" id="cancel-checkout">Volver</button>
+                <button class="button button-primary" type="submit">Confirmar pedido simulado</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>
