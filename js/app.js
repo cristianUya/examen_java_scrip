@@ -26,6 +26,10 @@ const panelCarrito = document.querySelector("#cart-sidebar");
 const subtotalPedido = document.querySelector("#subtotal");
 const descuentoPedido = document.querySelector("#discount");
 const totalPedido = document.querySelector("#total");
+const dialogoCheckout = document.querySelector("#checkout-dialog");
+const formularioCheckout = document.querySelector("#checkout-form");
+const listaCheckout = document.querySelector("#checkout-items");
+const mensajeCheckout = document.querySelector("#checkout-message");
 
 let productosOriginales = [];
 let carrito;
@@ -201,16 +205,49 @@ botonVaciar.addEventListener("click", () => {
 botonConfirmar.addEventListener("click", () => {
     try {
         carrito.validarPedido();
-        const lineas = carrito.obtenerLineas();
+        mensajeCheckout.textContent = "";
+        listaCheckout.replaceChildren();
+        for (const linea of carrito.obtenerLineas()) {
+            const elemento = document.createElement("li");
+            elemento.textContent =
+                `${linea.name} x ${linea.quantity} — ${formatoPrecio.format(linea.subtotal)}`;
+            listaCheckout.append(elemento);
+        }
+        document.querySelector("#checkout-subtotal").textContent =
+            formatoPrecio.format(carrito.calcularSubtotal());
+        document.querySelector("#checkout-discount").textContent =
+            formatoPrecio.format(carrito.calcularDescuento());
+        document.querySelector("#checkout-total").textContent =
+            formatoPrecio.format(carrito.calcularTotal());
+        if (vistaMovil.matches) cerrarCarritoMovil();
+        dialogoCheckout.showModal();
+    } catch (error) {
+        mensajePedido.textContent = error.message;
+    }
+});
+
+function cerrarCheckout() {
+    if (dialogoCheckout.open) dialogoCheckout.close();
+}
+
+document.querySelector("#close-checkout").addEventListener("click", cerrarCheckout);
+document.querySelector("#cancel-checkout").addEventListener("click", cerrarCheckout);
+dialogoCheckout.addEventListener("close", () => {
+    if (vistaMovil.matches) botonAbrirCarrito.focus();
+});
+
+formularioCheckout.addEventListener("submit", event => {
+    event.preventDefault();
+    try {
+        carrito.validarPedido();
         const subtotal = carrito.calcularSubtotal();
         const descuento = carrito.calcularDescuento();
         const total = carrito.calcularTotal();
         const identificador = globalThis.crypto?.randomUUID
             ? globalThis.crypto.randomUUID()
             : `pedido-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-        const detalle = lineas.map(linea => `${linea.name} x ${linea.quantity}: ${formatoPrecio.format(linea.subtotal)}`).join("\n");
         mensajePedido.textContent =
-            `Pedido simulado ${identificador}\n${detalle}\n`
+            `Pedido simulado ${identificador}\n`
             + `Subtotal: ${formatoPrecio.format(subtotal)}\n`
             + `Descuento: ${formatoPrecio.format(descuento)}\n`
             + `Total: ${formatoPrecio.format(total)}\n`
@@ -218,8 +255,10 @@ botonConfirmar.addEventListener("click", () => {
 
         carrito.vaciarCarrito();
         guardarYActualizarCarrito();
+        formularioCheckout.reset();
+        cerrarCheckout();
     } catch (error) {
-        mensajePedido.textContent = error.message;
+        mensajeCheckout.textContent = error.message;
     }
 });
 
